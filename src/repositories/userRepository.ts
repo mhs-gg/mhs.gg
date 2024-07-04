@@ -10,8 +10,13 @@ async function createUser(user:User) {
 async function getUserByEmail(email:string) {
   const client = await user_repository;
   const db = client.db();
-  const user = await db.collection('users').findOne({ email });
-  return user;
+  try {
+    const user = await db.collection('users').findOne({ email });
+    return user;
+  } catch (error) {
+    console.log('Failed to fetch user: ', error);
+    throw new Error('Failed to fetch user.');
+  }
 }
 
 async function updateUser(email: string, updatedUser: User) {
