@@ -1,4 +1,5 @@
 import user_repository from "@/lib/userRepository";
+import { Filter } from "mongodb";
 
 async function createUser(user:User) {
   const client = await user_repository;
@@ -37,11 +38,10 @@ async function getAllUsers() {
 }
 
 
-// Todo: update / correct criteria type assignment.
-async function findUsersByCriteria(criteria:any) {
+async function findUsersByCriteria(criteria: Filter<User>) {
   const client = await user_repository;
   const db = client.db();
-  const users = await db.collection('users').find(criteria).toArray();
+  const users = await db.collection<User>('users').find(criteria).toArray();
   return users;
 }
 

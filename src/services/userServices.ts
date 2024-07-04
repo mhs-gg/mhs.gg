@@ -1,4 +1,5 @@
 import * as userRepository from '@/repositories/userRepository';
+import { Filter } from 'mongodb';
 
 async function registerUser(user: User) {
   return await userRepository.createUser(user);
@@ -25,7 +26,7 @@ async function listAllUsers() {
   return await userRepository.getAllUsers();
 }
 
-async function searchUsers(criteria: any) {
+async function searchUsers(criteria: Filter<User>) {
   return await userRepository.findUsersByCriteria(criteria);
 }
 
