@@ -5,7 +5,7 @@ import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import user_repository from "./lib/userRepository";
 import { signInSchema } from "./lib/zod";
-import { getUserByEmail } from "./repositories/userRepository";
+import { findUserByEmail } from "./services/userServices";
 
 
 interface NextAuthUser {
@@ -36,7 +36,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         if (parsedCredentials.success) {
           const {email, password} = parsedCredentials.data;
-          const user = await getUserByEmail(email);
+          const user = await findUserByEmail(email);
           if (!user) return null;
           if (await bcrypt.compare(password, user.password)) {
             const nextAuthUser: NextAuthUser = {

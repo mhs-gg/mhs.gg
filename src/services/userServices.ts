@@ -5,7 +5,12 @@ async function registerUser(user: User) {
 }
 
 async function findUserByEmail(email: string) {
-  return await userRepository.getUserByEmail(email);
+  try {
+    return await userRepository.getUserByEmail(email);
+  } catch (error) {
+    console.log('Failed to fetch user: ', error);
+    throw new Error('Failed to fetch user.');
+  }
 }
 
 async function modifyUser(email: string, updatedUser: User) {
