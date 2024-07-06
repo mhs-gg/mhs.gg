@@ -1,6 +1,6 @@
-import { SignIn } from "@/components/sign-in";
+import SignIn from "@/components/sign-in";
 import SignUp from "@/components/sign-up";
-import { SignOut } from "@/components/signOut";
+import SignOut from "@/components/signOut";
 import UserAvatar from "@/components/UserAvatar";
 
 
