@@ -7,5 +7,5 @@ export default async function UserAvatar() {
   if (!session?.user) return null;
   const imageUrl = session.user.image ?? '';
   
-  return <img src={imageUrl} alt="User Avatar" />;
+  return <img className="w-24 h-24 rounded-full border-2 border-gray-300 shadow-md"src={imageUrl} alt="User Avatar" />;
 }
